@@ -14,7 +14,7 @@ transform = transforms.Compose([
 trainset = torchvision.datasets.CIFAR10(root=DATA_DIR, train=True, download=True, transform=transform)
 
 trainloader = torch.utils.data.DataLoader(
-    trainset, batch_size = BATCH_SIZE, shuffle = True
+    trainset, batch_size = BATCH_SIZE, shuffle = True, num_workers=2
 )
 
 model = MyNet() #initializing the model

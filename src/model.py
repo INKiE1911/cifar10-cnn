@@ -6,7 +6,7 @@ KERNEL_SIZE = 3 # 3x3 Window, modest enough for our 32x32 sized image
 INPUT_CHANNELS = 3 #R,G,B
 CONV1_FILTERS = 32 #number of KERNEL_SIZE x KERNEL_SIZE x INPUT_CHANNEL(RGB) filters, here  3x3x3 = 27 learnable weights
 CONV2_FILTERS = 64 
-FC1_SIZE = 256 #number of neurons in first linear layer, inputs to it would be CONV2_FILTERS x 8 x 8 , here 8 comes after pooling 2 times 32(CONV1_FILTERS) / 2 then / 2 = 8 therefore 4096 inputs
+FC1_SIZE = 256 #number of neurons in first linear layer, inputs to it would be CONV2_FILTERS x 8 x 8 , here 8 comes after pooling 2 times, 32(CONV1_FILTERS) / 2 then / 2 = 8 therefore 2048 inputs
 
 class MyNet(nn.Module):
     def __init__(self):
@@ -29,9 +29,9 @@ class MyNet(nn.Module):
         x = self.batch_norm_conv2(x)
         x = torch.relu(x)
         x = self.pool(x) # (CONV2_FILTERS,16,16) -> (CONV2_FILTERS,8,8)
-        x = self.flatten(x) # (CONV2_FILTERS,8,8) -> [4096]
+        x = self.flatten(x) # (CONV2_FILTERS,8,8) -> [2048]
         x = self.batch_norm_fc1(x)
-        x = self.fc1(x) #[4096] -> [FC1_SIZE]
+        x = self.fc1(x) #[2048] -> [FC1_SIZE]
         x = torch.relu(x)
         x = self.fc2(x) #[FC1_SIZE] -> [NUM_CLASSES]
         return x 
