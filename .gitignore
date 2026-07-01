@@ -1,4 +1,25 @@
+# Data (downloaded automatically, too large for git)
 data/
+
+# Trained model checkpoints
 checkpoints/*.pth
+
+# Generated outputs: ONNX exports and diagnostic plots
 outputs/*.onnx
+outputs/*.png
+
+# Python
 __pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
