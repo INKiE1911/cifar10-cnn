@@ -1,2 +1,4 @@
 data/
 checkpoints/*.pth
+outputs/*.onnx
+__pycache__/
